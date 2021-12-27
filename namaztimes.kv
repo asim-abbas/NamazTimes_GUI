@@ -1,0 +1,730 @@
+#:import Factory kivy.factory.Factory
+
+#:set logoPanel_Color 0.8, 0.8, 0.8, 1
+#:set backGround_Color 0, 0, 0, 1
+#:set backGroundJumma_Color 0, 0.33, 0.64, 1
+#:set headingBox_Color 0.75, 0, 0, 1
+#:set heading_Color 1, 1, 1, 1
+#:set valueBox_Color 0.8, 0.8, 0.8, 1
+#:set value_Color 0.75, 0, 0, 1
+#:set black_Color 0, 0, 0, 1
+#:set footerText_Color 1, 1, 1, 1
+#:set yOffsetDisplay 50
+
+## Window for screen displaying azaan times
+<AzaanTimeScreen@BoxLayout>:
+    canvas.before:
+        Color:
+        Rectangle:
+            size: self.size
+            pos: self.x + sp(2), self.y + sp(2)
+            size: self.width - sp(4), self.height - sp(4)
+
+## Window for screen displaying jamaat times
+<JamaatTimeScreen@BoxLayout>:
+    canvas.before:
+        Color:
+        Rectangle:
+            size: self.size
+            pos: self.x + sp(2), self.y + sp(2)
+            size: self.width - sp(4), self.height - sp(4)
+
+## Window for screen displaying jumma time
+<JummaTimeScreen@BoxLayout>:
+    canvas.before:
+        Color:
+        Rectangle:
+            size: self.size
+            pos: self.x + sp(2), self.y + sp(2)
+            size: self.width - sp(4), self.height - sp(4)
+
+## Window for screen displaying current time
+<TimeScreen@BoxLayout>:
+    canvas.before:
+        Color:
+        Rectangle:
+            size: self.size
+            pos: self.x + sp(2), self.y + sp(2)
+            size: self.width - sp(4), self.height - sp(4)
+            
+            
+## Main Kivy class
+<NAMAZTIMESWidget>:
+    fullscreen: True
+
+    ## Carousel is the container for displaying different screens
+    ## It has a feature for moving onto the next screen on swipe
+    Carousel:
+        id: carousel
+        anim_move_duration: 1
+        loop: True
+        
+        AzaanTimeScreen:
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgba: 0.17,0.34,0.24,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        
+                ## 1. Logo Panel
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        canvas:
+                            Color:
+                                rgba: 0.17,0.34,0.24,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        
+                ## 2. GUI for Logo display
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        Image:
+                            id: logo
+                            source: 'logoAzaan.png'
+                            size: 1280, 200
+
+                ## 1_Namaz. Fajar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 870, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'fadjar.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 870, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: fajarAzan_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 2_Namaz. Zuhar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 460, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'dhuhr.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 460, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: zuharAzan_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 3_Namaz. Asar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 50, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'asr.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 50, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: asrAzan_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 4_Namaz. Maghrib prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 670, 320 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'maghrib.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 670, 120 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: maghribAzan_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 5_Namaz. Eshaa prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 260, 320 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'eshaa.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 260, 120 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: eshaaAzan_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+                                
+                ## Today's date
+                FloatLayout:
+                    BoxLayout:
+                        pos: 50, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 350, 100
+                        canvas:
+                            Color:
+                                rgba: 0.17,0.34,0.24,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: dateAzan_Label
+                            bold: True
+                            text: "**-**-****"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 350, 100
+
+                ## Current time
+                FloatLayout:
+                    BoxLayout:
+                        pos: 1020, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 200, 100
+                        canvas:
+                            Color:
+                                rgba: 0.17,0.34,0.24,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: timeAzan_Label
+                            bold: True
+                            text: "--:--:--"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 200, 100
+
+                ## Footer Calculation Method
+                FloatLayout:
+                    BoxLayout:
+                        pos: 430, 20
+                        size_hint: None, None
+                        size: 300, 30
+                        canvas:
+                            Color:
+                                rgba: 0.17,0.34,0.24,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: methodAzan_Label
+                            bold: True
+                            text: "--"
+                            font_size: 18
+                            color: footerText_Color
+                            size: 300, 30
+
+                ## Footer Asr Method
+                FloatLayout:
+                    BoxLayout:
+                        pos: 800, 20
+                        size_hint: None, None
+                        size: 200, 30
+                        canvas:
+                            Color:
+                                rgba: 0.17,0.34,0.24,1
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: asrMethodAzan_Label
+                            bold: True
+                            text: "--"
+                            font_size: 18
+                            color: footerText_Color
+                            size: 200, 30
+
+## JAMAAT TIMES WINDOW
+        JamaatTimeScreen:
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgba: backGround_Color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        
+                ## 1. Logo Panel
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        canvas:
+                            Color:
+                                rgba: logoPanel_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        
+                ## 2. GUI for Logo display
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        Image:
+                            id: logoJamaat
+                            source: 'logoJamaat.png'
+                            size: 1280, 200
+
+                ## 1_Namaz. Fajar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 870, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'fadjar.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 870, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: fajarJamaat_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 2_Namaz. Zuhar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 460, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'dhuhr.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 460, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: zuharJamaat_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 3_Namaz. Asar prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 50, 640 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'asr.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 50, 440 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: asrJamaat_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 4_Namaz. Maghrib prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 670, 320 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'maghrib.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 670, 120 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: maghribJamaat_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+
+                ## 5_Namaz. Eshaa prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 260, 320 + yOffsetDisplay
+                        size: 360, 100
+                        Image:
+                            id: logo
+                            source: 'eshaa.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 260, 120 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 360, 200
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: eshaaJamaat_Time
+                            bold: True
+                            text: "--:--"
+                            font_size: 120
+                            color: value_Color
+                            size: 360, 200
+                                
+                ## Today's date
+                FloatLayout:
+                    BoxLayout:
+                        pos: 50, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 350, 100
+                        canvas:
+                            Color:
+                                rgba: black_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: dateJamaat_Label
+                            bold: True
+                            text: "**-**-****"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 350, 100
+
+                ## Current time
+                FloatLayout:
+                    BoxLayout:
+                        pos: 1020, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 200, 100
+                        canvas:
+                            Color:
+                                rgba: black_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: timeJamaat_Label
+                            bold: True
+                            text: "--:--:--"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 200, 100
+
+## JUMMA JAMAAT TIME WINDOW
+        JummaTimeScreen:
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgba: backGroundJumma_Color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        
+                ## 1. Logo Panel
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        canvas:
+                            Color:
+                                rgba: logoPanel_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        
+                ## 2. GUI for Logo display
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 0, 760 + yOffsetDisplay
+                        size: 1280, 200
+                        Image:
+                            id: logoJamaat_JummaScreen
+                            source: 'logoJamaatJumma.png'
+                            size: 1280, 200
+
+                ## 1_Jumma. Jumma 1 prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 690, 500
+                        size: 490, 200
+                        Image:
+                            id: logo_jumma1
+                            source: 'jumma_Large1.png'
+                            size: 490, 200
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 690, 200
+                        size_hint: None, None
+                        size: 490, 300
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: jummaJamaat_Time1
+                            bold: True
+                            text: "--:--"
+                            font_size: 150
+                            color: value_Color
+                            size: 490, 300
+                            
+                ## 2_Jumma. Jumma 2 prayer Section
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 100, 500
+                        size: 490, 200
+                        Image:
+                            id: logo_jumma2
+                            source: 'jumma_Large2.png'
+                            size: 360, 100
+
+                FloatLayout:
+                    BoxLayout:
+                        pos: 100, 200
+                        size_hint: None, None
+                        size: 490, 300
+                        canvas:
+                            Color:
+                                rgba: valueBox_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: jummaJamaat_Time2
+                            bold: True
+                            text: "--:--"
+                            font_size: 150
+                            color: value_Color
+                            size: 490, 300
+                                
+                ## Today's date
+                FloatLayout:
+                    BoxLayout:
+                        pos: 50, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 350, 100
+                        canvas:
+                            Color:
+                                rgba: backGroundJumma_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: dateJummaJamaat_Label
+                            bold: True
+                            text: "**-**-****"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 300, 100
+
+                ## Current time
+                FloatLayout:
+                    BoxLayout:
+                        pos: 1020, 0 + yOffsetDisplay
+                        size_hint: None, None
+                        size: 200, 100
+                        canvas:
+                            Color:
+                                rgba: backGroundJumma_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: timeJummaJamaat_Label
+                            bold: True
+                            text: "--:--:--"
+                            font_size: 60
+                            color: footerText_Color
+                            size: 200, 100
+                            
+## DIGITAL CLOCK WINDOW
+        TimeScreen:
+            BoxLayout:
+                canvas:
+                    Color:
+                        rgba: backGround_Color
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        
+                ## 1. Logo Panel
+                FloatLayout:
+                    pos: self.parent.pos
+                    BoxLayout:
+                        size_hint: None, None
+                        pos: 225, 250
+                        size: 800, 500
+                        canvas:
+                            Color:
+                                rgba: black_Color
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        Label:
+                            id: timeClock_Label
+                            bold: True
+                            text: "--:--:--"
+                            font_size: 300
+                            color: footerText_Color
+                            size: 800, 500
